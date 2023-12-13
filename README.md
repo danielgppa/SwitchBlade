@@ -18,10 +18,20 @@ Below is a list of planned features for SwitchBlade:
 - [ ] Data Visualization Tools *(planned)*
 - [ ] Customizable Calculator with Scripting Support *(planned)*
 - [ ] Binary Converter *(planned)*
+- [ ] Hexadecimal Converter *(planned)*
+- [ ] File size Converter (megabytes, gigabytes, terabytes, etc.) *(planned)*
+- [ ] Download Speed Calculator *(planned)*
+- [ ] Age Calculator *(planned)*
+- [ ] BMI Calculator *(planned)*
 - [ ] Color Selector Tool *(planned)*
 - [ ] Coin Flip Simulator *(planned)*
 - [ ] Spin the Wheel Feature *(planned)*
 - [ ] Random Number Generator *(planned)*
 - [ ] Password Generator *(planned)*
-- [ ] Password Strength Checker *(planned)*
 - [ ] Text transformation tools (e.g. Uppercase, Lowercase, Titlecase, etc.) *(planned)*
+- [ ] Social Security Number generator *(planned)*
+- [ ] Name Generator *(planned)*
+- [ ] Birth Date Generator *(planned)*
+- [ ] Phone Number Generator *(planned)*
+- [ ] Zip Code Generator *(planned)*
+- [ ] Data Generator (table, spreadsheet, etc.) *(planned)*
