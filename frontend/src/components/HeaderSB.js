@@ -1,23 +1,42 @@
+import { IconButton } from '@material-ui/core';
+import { Avatar } from '@material-ui/core';
+import { useHistory } from 'react-router-dom'
+
 const headerStyle = {
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    height:'8vh',
+    height: '8vh',
     backgroundColor: 'rgb(99, 89, 133)'
-}
+};
+
+const titleContainerStyle = {
+    flexGrow: 1,
+    display: 'flex',
+    justifyContent: 'center'
+};
 
 const titleStyle = {
     fontSize: '3rem',
     color: 'rgb(221, 230, 237)'
-}
+};
 
 function HeaderSB() {
-    return(
-    <header style={headerStyle}>
-        <div style={titleStyle}>Switchblade</div>
-    </header>
+    let history = useHistory();
+
+    const handleClick = () => {
+        history.push('/');
+    }
+
+    return (
+        <header style={headerStyle}>
+            <IconButton aria-label='home' onClick={handleClick}><Avatar src={"https://www.svgrepo.com/show/96177/home-button.svg"}/></IconButton>
+            <div style={titleContainerStyle}>
+                <div style={titleStyle}>Switchblade</div>
+            </div>
+        </header>
     )
 }
 
