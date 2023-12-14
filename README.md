@@ -35,3 +35,6 @@ Below is a list of planned features for SwitchBlade:
 - [ ] Phone Number Generator *(planned)*
 - [ ] Zip Code Generator *(planned)*
 - [ ] Data Generator (table, spreadsheet, etc.) *(planned)*
+
+## Swagger
+http://localhost:8080/swagger-ui/index.html#/
