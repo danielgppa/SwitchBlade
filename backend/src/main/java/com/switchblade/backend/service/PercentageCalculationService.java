@@ -15,7 +15,7 @@ public class PercentageCalculationService {
     private PercentageCalculationRepository repository;
 
     public PercentageCalculation calculatePercentageOfValue(BigDecimal value1, BigDecimal value2) {
-        BigDecimal result = value1.multiply(value2).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+        BigDecimal result = value2.divide(value1, 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
         return saveCalculation(value1, value2, result, "Percentage Of");
     }
 
@@ -30,7 +30,8 @@ public class PercentageCalculationService {
     }
 
     public PercentageCalculation calculatePercentageDifference(BigDecimal value1, BigDecimal value2) {
-        BigDecimal result = value2.subtract(value1).divide(value1, 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
+        BigDecimal difference = value2.subtract(value1).abs();
+        BigDecimal result = difference.divide(value1, 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
         return saveCalculation(value1, value2, result, "Difference");
     }
 
