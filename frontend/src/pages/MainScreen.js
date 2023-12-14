@@ -1,6 +1,5 @@
 import Card from "../components/Card"
 
-
 function MainScreen() {
 
     return (
