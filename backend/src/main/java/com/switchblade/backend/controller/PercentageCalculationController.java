@@ -18,23 +18,43 @@ public class PercentageCalculationController {
         this.calculationService = calculationService;
     }
 
-    @PostMapping("/percentage-of")
-    public PercentageCalculation calculatePercentageOf(@RequestParam BigDecimal value1, @RequestParam BigDecimal value2) {
-        return calculationService.calculatePercentageOfValue(value1, value2);
+    @PostMapping("/what-is-the-percentage-of")
+    public PercentageCalculation whatIsThePercentageOf(@RequestParam BigDecimal value1, @RequestParam BigDecimal value2) {
+        return calculationService.whatIsThePercentageOf(value1, value2);
+    }
+
+    @PostMapping("/value-is-what-percentage-of")
+    public PercentageCalculation valueIsWhatPercentageOf(@RequestParam BigDecimal value1, @RequestParam BigDecimal value2) {
+        return calculationService.valueIsWhatPercentageOf(value1, value2);
+    }
+
+    @PostMapping("/percentage-increase")
+    public PercentageCalculation percentageIncrease(@RequestParam BigDecimal oldValue, @RequestParam BigDecimal newValue) {
+        return calculationService.percentageIncrease(oldValue, newValue);
+    }
+
+    @PostMapping("/percentage-decrease")
+    public PercentageCalculation percentageDecrease(@RequestParam BigDecimal oldValue, @RequestParam BigDecimal newValue) {
+        return calculationService.percentageDecrease(oldValue, newValue);
     }
 
     @PostMapping("/increase-by-percentage")
-    public PercentageCalculation calculateIncreaseBy(@RequestParam BigDecimal value1, @RequestParam BigDecimal value2) {
-        return calculationService.calculateIncreaseByPercentage(value1, value2);
+    public PercentageCalculation increaseByPercentage(@RequestParam BigDecimal value, @RequestParam BigDecimal percentage) {
+        return calculationService.increaseByPercentage(value, percentage);
     }
 
     @PostMapping("/decrease-by-percentage")
-    public PercentageCalculation calculateDecreaseBy(@RequestParam BigDecimal value1, @RequestParam BigDecimal value2) {
-        return calculationService.calculateDecreaseByPercentage(value1, value2);
+    public PercentageCalculation decreaseByPercentage(@RequestParam BigDecimal value, @RequestParam BigDecimal percentage) {
+        return calculationService.decreaseByPercentage(value, percentage);
     }
 
-    @PostMapping("/percentage-difference")
-    public PercentageCalculation calculatePercentageDifference(@RequestParam BigDecimal value1, @RequestParam BigDecimal value2) {
-        return calculationService.calculatePercentageDifference(value1, value2);
+    @PostMapping("/initial-value-increased-by")
+    public PercentageCalculation initialIncreasedByPercentage(@RequestParam BigDecimal finalValue, @RequestParam BigDecimal percentage) {
+        return calculationService.initialIncreasedByPercentage(finalValue, percentage);
+    }
+
+    @PostMapping("/initial-value-decreased-by")
+    public PercentageCalculation initialDecreasedByPercentage(@RequestParam BigDecimal finalValue, @RequestParam BigDecimal percentage) {
+        return calculationService.initialDecreasedByPercentage(finalValue, percentage);
     }
 }
