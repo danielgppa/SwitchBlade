@@ -14,24 +14,44 @@ public class PercentageCalculationService {
     @Autowired
     private PercentageCalculationRepository repository;
 
-    public PercentageCalculation calculatePercentageOfValue(BigDecimal value1, BigDecimal value2) {
+    public PercentageCalculation whatIsThePercentageOf(BigDecimal value1, BigDecimal value2) {
         BigDecimal result = value1.multiply(value2).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
-        return saveCalculation(value1, value2, result, "Percentage Of");
+        return saveCalculation(value1, value2, result, "What is the % of");
     }
 
-    public PercentageCalculation calculateIncreaseByPercentage(BigDecimal value1, BigDecimal value2) {
-        BigDecimal result = value1.add(value1.multiply(value2).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP));
-        return saveCalculation(value1, value2, result, "Increase");
+    public PercentageCalculation valueIsWhatPercentageOf(BigDecimal value1, BigDecimal value2) {
+        BigDecimal result = value1.multiply(BigDecimal.valueOf(100)).divide(value2, 2, RoundingMode.HALF_UP);
+        return saveCalculation(value1, value2, result, "Value is what % of");
     }
 
-    public PercentageCalculation calculateDecreaseByPercentage(BigDecimal value1, BigDecimal value2) {
-        BigDecimal result = value1.subtract(value1.multiply(value2).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP));
-        return saveCalculation(value1, value2, result, "Decrease");
+    public PercentageCalculation percentageIncrease(BigDecimal oldValue, BigDecimal newValue) {
+        BigDecimal result = newValue.subtract(oldValue).multiply(BigDecimal.valueOf(100)).divide(oldValue, 2, RoundingMode.HALF_UP);
+        return saveCalculation(oldValue, newValue, result, "Percentage Increase");
     }
 
-    public PercentageCalculation calculatePercentageDifference(BigDecimal value1, BigDecimal value2) {
-        BigDecimal result = value2.subtract(value1).divide(value1, 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
-        return saveCalculation(value1, value2, result, "Difference");
+    public PercentageCalculation percentageDecrease(BigDecimal oldValue, BigDecimal newValue) {
+        BigDecimal result = oldValue.subtract(newValue).multiply(BigDecimal.valueOf(100)).divide(oldValue, 2, RoundingMode.HALF_UP);
+        return saveCalculation(oldValue, newValue, result, "Percentage Decrease");
+    }
+
+    public PercentageCalculation increaseByPercentage(BigDecimal value, BigDecimal percentage) {
+        BigDecimal result = value.add(value.multiply(percentage).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP));
+        return saveCalculation(value, percentage, result, "Increase by %");
+    }
+
+    public PercentageCalculation decreaseByPercentage(BigDecimal value, BigDecimal percentage) {
+        BigDecimal result = value.subtract(value.multiply(percentage).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP));
+        return saveCalculation(value, percentage, result, "Decrease by %");
+    }
+
+    public PercentageCalculation initialIncreasedByPercentage(BigDecimal finalValue, BigDecimal percentage) {
+        BigDecimal result = finalValue.multiply(BigDecimal.valueOf(100)).divide(BigDecimal.valueOf(100).add(percentage), 2, RoundingMode.HALF_UP);
+        return saveCalculation(finalValue, percentage, result, "Initial value increased by %");
+    }
+
+    public PercentageCalculation initialDecreasedByPercentage(BigDecimal finalValue, BigDecimal percentage) {
+        BigDecimal result = finalValue.multiply(BigDecimal.valueOf(100)).divide(BigDecimal.valueOf(100).subtract(percentage), 2, RoundingMode.HALF_UP);
+        return saveCalculation(finalValue, percentage, result, "Initial value decreased by %");
     }
 
     private PercentageCalculation saveCalculation(BigDecimal value1, BigDecimal value2, BigDecimal result, String calculationType) {
