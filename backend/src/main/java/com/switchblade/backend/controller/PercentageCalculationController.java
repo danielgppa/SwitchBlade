@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/api/calculation")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PercentageCalculationController {
 
     private final PercentageCalculationService calculationService;
