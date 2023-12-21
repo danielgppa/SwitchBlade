@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardContent, TextField, Typography, Button, InputAdornment } from '@material-ui/core';
-import { whatIsThePercentageOf } from '../api/apiFetchPercentage';
+import { whatIsThePercentageOf } from '../api/calculator/apiFetchPercentage';
 
 function IOCard(props) {
     const [input1, setInput1] = useState('');
