@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Card, CardContent, TextField, Typography, InputAdornment } from '@material-ui/core';
+import { whatIsThePercentageOf } from '../api/apiFetch';
 
 function IOCard() {
     const [input1, setInput1] = useState('');
@@ -16,9 +17,18 @@ function IOCard() {
         updateOutput(input1, event.target.value);
     };
 
-    const updateOutput = (val1, val2) => {
-        // You can process and set the output based on input1 and input2 here
-        setOutput(`${val1+val2}`);
+    const updateOutput = async (val1, val2) => {
+        if (val1 && val2) {
+            try {
+                const response = await whatIsThePercentageOf(parseFloat(val1), parseFloat(val2));
+                setOutput(response.result); // Update to set only the result
+            } catch (error) {
+                console.error('Error:', error);
+                setOutput('Error'); // Display error in output field
+            }
+        } else {
+            setOutput(''); // Clear output if any of the inputs are empty
+        }
     };
 
     const cardStyle = {
