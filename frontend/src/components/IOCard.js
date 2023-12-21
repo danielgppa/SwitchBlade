@@ -1,40 +1,49 @@
-import { useState } from 'react';
-import { Card, CardContent, TextField, Typography, InputAdornment } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Card, CardContent, TextField, Typography, Button, InputAdornment } from '@material-ui/core';
 import { whatIsThePercentageOf } from '../api/apiFetch';
 
-function IOCard() {
+function IOCard(props) {
     const [input1, setInput1] = useState('');
     const [input2, setInput2] = useState('');
     const [output, setOutput] = useState('');
+    const [error, setError] = useState('');
 
     const handleInput1Change = (event) => {
-        setInput1(event.target.value);
-        updateOutput(event.target.value, input2);
+        const value = event.target.value;
+        // Allow only numbers
+        if (!isNaN(value)) {
+            setInput1(value);
+        }
     };
-
+    
     const handleInput2Change = (event) => {
-        setInput2(event.target.value);
-        updateOutput(input1, event.target.value);
+        const value = event.target.value;
+        // Allow only numbers
+        if (!isNaN(value)) {
+            setInput2(value);
+        }
     };
 
-    const updateOutput = async (val1, val2) => {
-        if (val1 && val2) {
+    const handleSubmit = async () => {
+        if (input1 && input2) {
             try {
-                const response = await whatIsThePercentageOf(parseFloat(val1), parseFloat(val2));
-                setOutput(response.result); // Update to set only the result
+                const response = await whatIsThePercentageOf(parseFloat(input1), parseFloat(input2));
+                setOutput(response.result);
+                setError('');
             } catch (error) {
                 console.error('Error:', error);
-                setOutput('Error'); // Display error in output field
+                setOutput('');
+                setError('Error calculating');
             }
         } else {
-            setOutput(''); // Clear output if any of the inputs are empty
+            setError('Please enter both values');
         }
     };
 
     const cardStyle = {
         width: '900px',
         maxWidth: '90vw',
-        height: '15vh',
+        height: 'auto', // Changed to 'auto' to accommodate the dynamic content
         margin: 'auto'
     };
 
@@ -44,21 +53,26 @@ function IOCard() {
         width: '100px'
     };
 
-    const outputStyle = {
-        width: '150px',
-        paddingLeft: '5px'
+    const buttonStyle = {
+        marginLeft: '10px',
     };
 
     const flexContainer = {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        flexWrap: 'wrap' // Added to ensure responsiveness
+    };
+
+    const resultStyle = {
+        marginTop: '10px',
+        textAlign: 'center'
     };
 
     const cardContents = (
         <CardContent>
             <Typography variant="h5" component="h2">
-                Percentage Calculator
+                {props.name}
             </Typography>
             <div style={flexContainer}>
                 <TextField 
@@ -77,17 +91,28 @@ function IOCard() {
                     onChange={handleInput2Change}
                     style={inputStyle}
                 />
-                is
-                <TextField 
-                    label="Result" 
-                    variant="outlined" 
-                    value={output} 
-                    disabled
-                    style={outputStyle} 
-                />
+                <Button 
+                    variant="contained" 
+                    color="primary" 
+                    onClick={handleSubmit}
+                    style={buttonStyle}
+                >
+                    Calculate
+                </Button>
             </div>
+            {output && (
+                <Typography variant="h6" style={resultStyle}>
+                    Result: {output}
+                </Typography>
+            )}
+            {error && (
+                <Typography variant="h6" style={{ ...resultStyle, color: 'red' }}>
+                    {error}
+                </Typography>
+            )}
         </CardContent>
     );
+
     return (
         <Card variant='outlined' style={cardStyle}>{cardContents}</Card>
     );

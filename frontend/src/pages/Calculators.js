@@ -4,8 +4,9 @@ function Calculators() {
 
     return (
         <div>
-            <h1>Calculators</h1>
-            <IOCard></IOCard>
+            <h1>Percentage Calculators</h1>
+            <IOCard name='Percentage of value'></IOCard>
+            <IOCard name='Value is percentage of'></IOCard>
         </div>
     )
 }
