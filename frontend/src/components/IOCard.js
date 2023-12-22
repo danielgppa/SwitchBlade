@@ -74,6 +74,7 @@ function IOCard(props) {
                 {props.name}
             </Typography>
             <div style={flexContainer}>
+                {props.displayText.split("|")[0]}
                 <TextField 
                     label="X" 
                     variant="outlined" 
@@ -81,7 +82,7 @@ function IOCard(props) {
                     onChange={handleInput1Change}
                     style={inputStyle}
                 />
-                of
+                {props.displayText.split("|")[1]}
                 <TextField 
                     label="Y" 
                     variant="outlined" 
@@ -89,6 +90,7 @@ function IOCard(props) {
                     onChange={handleInput2Change}
                     style={inputStyle}
                 />
+                {props.displayText.split("|")[2]}
                 <Button 
                     variant="contained" 
                     color="primary" 
