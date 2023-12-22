@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Card, CardContent, TextField, Typography, Button, InputAdornment } from '@material-ui/core';
-import { whatIsThePercentageOf } from '../api/calculator/apiFetchPercentage';
+import { Card, CardContent, TextField, Typography, Button } from '@material-ui/core';
 
 function IOCard(props) {
     const [input1, setInput1] = useState('');
@@ -27,7 +26,7 @@ function IOCard(props) {
     const handleSubmit = async () => {
         if (input1 && input2) {
             try {
-                const response = await whatIsThePercentageOf(parseFloat(input1), parseFloat(input2));
+                const response = await props.calculationFunction(parseFloat(input1), parseFloat(input2));
                 setOutput(response.result);
                 setError('');
             } catch (error) {
@@ -43,7 +42,7 @@ function IOCard(props) {
     const cardStyle = {
         width: '900px',
         maxWidth: '90vw',
-        height: 'auto', // Changed to 'auto' to accommodate the dynamic content
+        height: 'auto',
         margin: 'auto'
     };
 
@@ -61,7 +60,7 @@ function IOCard(props) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        flexWrap: 'wrap' // Added to ensure responsiveness
+        flexWrap: 'wrap'
     };
 
     const resultStyle = {
@@ -81,7 +80,6 @@ function IOCard(props) {
                     value={input1} 
                     onChange={handleInput1Change}
                     style={inputStyle}
-                    InputProps={{endAdornment: <InputAdornment position="end">%</InputAdornment>}}
                 />
                 of
                 <TextField 

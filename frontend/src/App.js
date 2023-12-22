@@ -14,8 +14,8 @@ function App() {
         <div className='content'></div>
         <Switch>
           <Route exact path='/' component={MainScreen} />
-          <Route path='/calculators' component={Calculators} />
-          <Route path='/generators' component={Generators} />
+          <Route path='/calc' component={Calculators} />
+          <Route path='/gen' component={Generators} />
           <Route path='/404' component={NotFound} />
           <Redirect from='*' to='/404' />
         </Switch>
