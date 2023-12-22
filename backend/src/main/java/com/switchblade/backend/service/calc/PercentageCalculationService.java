@@ -1,7 +1,7 @@
-package com.switchblade.backend.service;
+package com.switchblade.backend.service.calc;
 
-import com.switchblade.backend.entity.PercentageCalculation;
-import com.switchblade.backend.repository.PercentageCalculationRepository;
+import com.switchblade.backend.entity.calc.PercentageCalculation;
+import com.switchblade.backend.repository.calc.PercentageCalculationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

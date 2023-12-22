@@ -1,14 +1,14 @@
-package com.switchblade.backend.controller;
+package com.switchblade.backend.controller.calc;
 
-import com.switchblade.backend.entity.PercentageCalculation;
-import com.switchblade.backend.service.PercentageCalculationService;
+import com.switchblade.backend.entity.calc.PercentageCalculation;
+import com.switchblade.backend.service.calc.PercentageCalculationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
 @RestController
-@RequestMapping("/api/calculation")
+@RequestMapping("/api/calc/percentage")
 @CrossOrigin(origins = "http://localhost:3000")
 public class PercentageCalculationController {
 

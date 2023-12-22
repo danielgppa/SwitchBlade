@@ -1,4 +1,4 @@
-package com.switchblade.backend.entity;
+package com.switchblade.backend.entity.calc;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
